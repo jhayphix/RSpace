@@ -52,13 +52,22 @@ kpss.test(temp_diff)
 #----------------------------------------------
 # .... Model selection
 #----------------------------------------------
-# Use acf and pacf
-# Build competing model
-#   mauto -> Get the model automatically
-#   m1 -> ARIMA(1,1,0)
-#   m2 -> ARIMA(0,1,1)
-#   m3 -> ARIMA(2,1,0)
-#   Check the one which is suitable (m1, m2, m3)
+
+# Use acf and pacf | ARIMA(1,1,0)
+Acf(temp, main="ACF plot of Year Temperature Series", lwd=2.5, col="maroon")
+Pacf(temp, main="PACF plot of Year Temperature Series", lwd=2.5, col="maroon")
+
+# ARIMA(0,1,1) | AIC=106.5 AICc=106.72 BIC=110.62
+mauto <- auto.arima(temp)
+# ARIMA(1,1,0) | AIC=109.02 AICc=109.24 BIC=113.14
+m1 <- Arima(temp, order=c(1,1,0))
+# ARIMA(2,1,0) | AIC=105.8  AICc=106.24 BIC=111.98
+m2 <- Arima(temp, order=c(2,1,0)) # --------> Suitable model
+# ARIMA(0,1,2) | AIC=108.49 AICc=108.93 BIC=114.67
+m3 <- Arima(temp, order=c(0,1,2))
+
+model <- m2
+
 # Manipulate model
 #   m3_const -> ARIMA(2,1,0) include constant term
 #   m3_drift -> ARIMA(2,1,0) include drift term
