@@ -12,8 +12,8 @@ attach(dataframe)
 #----------------------------------------------
 # .... Temperature data starting from 1960
 #----------------------------------------------
-temp <- ts(Temperature, start=c(1960, 1), frequency = 1); temp
-temp2 <- ts(Temperature, start=c(1960, 1), frequency = 12); temp2
+temp <- ts(Temperature, start=c(1960, 1), frequency = 1)
+temp2 <- ts(Temperature, start=c(1960, 1), frequency = 12);
 
 #----------------------------------------------
 # .... Work with temp2
@@ -22,16 +22,21 @@ plot(temp2, main="Plot of Monthly Temperature Series", ylab="Tempeature", xlab="
 
 welch(Temp2, freq=12) # no seasonality
 
-# Plot for seasonality
-# Check for seasonality
+adf.test(temp2)
+pp.test(temp2)
+kpss.test(temp2)
 
 #----------------------------------------------
 # .... Work with temp
 #----------------------------------------------
 plot(temp, main="Plot of Yearly Temperature Series", ylab="Tempeature", xlab="Year", lwd=2.2, col="maroon")
 
-# Check if stationary
-# Check the number of differences needed base on the test
+adf.test(temp)
+pp.test(temp)
+kpss.test(temp)
+
+ndiffs(temp)
+
 # Difference temp
 # Check if differenced temp is stationary
 
