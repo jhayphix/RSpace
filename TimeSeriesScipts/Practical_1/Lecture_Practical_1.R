@@ -1,64 +1,33 @@
 #----------------------------------------------
 # .... Imports
 #----------------------------------------------
-library(forecast)
+library(readxl)
 library(tseries)
 library(ggplot2)
-Temperature
-attach(Practicals_data)
+library(forecast)
+library(seastests)
 
-# ----------------------------------------------------
-# ------ Transforming the data to time series --------
-# -----------------------------------------------------
-# Frequency is 1 because its yearly data
-Temp = ts(Temperature, start=1960, frequency=1)
+# Read data
+data_path <- "~/RSpace/Datasources/Practicals_data.xls"
+dataset <- read_excel(data_path)
+attach(dataset)
 
-# When you know the ending then end = 2018 : Gives the same solution as Temp above
-Temp_same = ts(Temperature, start=1960, end=2018, frequency=1)
+#----------------------------------------------
+# .... Convert data to time series
+#----------------------------------------------
+Temp = ts(Temperature, start=1960, end=2018, frequency=1)
+Temp2= ts(Temperature, start=c(1960,1), frequency=12)
 
-# Indicating the month and year, Frequency is 12 because of monthly data
-Temp2 = ts(Temperature, start=c(1960, 1), frequency=12)
-
-# --------------------- End ---------------------------
-
-# ----------------------------------------------------
-# --------------- Plotting ----------------------------
-# -----------------------------------------------------
-plot(Temp)
-
-# Giving appropriate labeling
-plot(Temp, ylab="Temperature (in min)", xlab="Year")
-
-# Using autoplot
-autoplot(Temp)+ylab("Temperature (in min)")+xlab("Year")
-# Note -> it gives an error
-
-# --------------------- End ---------------------------
-
-
-# -----------------------------------------------------
-# --------------- Stabilizing the variance ------------
-# -----------------------------------------------------
-
+#----------------------------------------------
+# .... Working with temp
+#----------------------------------------------
 BoxCox.lambda(Temp)
 
-# --------------------- End ---------------------------
+autoplot(Temp2, main="Plot of Temperature two", col="maroon", lwd=2)
 
-
-# -----------------------------------------------------
-# --------------- Checking for stationarity -----------
-# -----------------------------------------------------
-
-# Adf test Ho: The temperature series is not stationary
 adf.test(Temp)
-
-# PP test Ho: The temperature series is not stationary
 pp.test(Temp)
-
-# KPSS test Ho: The temperature series is stationary
 kpss.test(Temp)
-
-# --------------------- End ---------------------------
 
 # -----------------------------------------------------
 # --------------- Differencing ------------------------
