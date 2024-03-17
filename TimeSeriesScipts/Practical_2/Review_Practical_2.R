@@ -9,11 +9,13 @@ data_path = "//mac/Home/Documents/_DataScienceHub/R/Datasources/Practicals_data.
 dataframe = read_excel(data_path)
 attach(dataframe)
 
+
 #----------------------------------------------
 # .... Temperature data starting from 1960
 #----------------------------------------------
 temp <- ts(Temperature, start=c(1960, 1), frequency = 1)
 temp2 <- ts(Temperature, start=c(1960, 1), frequency = 12);
+
 
 #----------------------------------------------
 # .... Work with temp2
@@ -26,6 +28,7 @@ adf.test(temp2)
 pp.test(temp2)
 kpss.test(temp2)
 
+
 #----------------------------------------------
 # .... Work with temp
 #----------------------------------------------
@@ -37,8 +40,13 @@ kpss.test(temp)
 
 ndiffs(temp)
 
-# Difference temp
-# Check if differenced temp is stationary
+# Difference temperature series
+temp_diff <- diff(temp)
+plot(temp_diff, main="Plot of Yearly Differenced Temperature Series", ylab="Tempeature", xlab="Year", lwd=2.2, col="orange")
+
+adf.test(temp_diff)
+pp.test(temp_diff)
+kpss.test(temp_diff)
 
 
 #----------------------------------------------
