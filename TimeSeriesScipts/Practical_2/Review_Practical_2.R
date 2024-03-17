@@ -69,11 +69,11 @@ m3 <- Arima(temp, order=c(0,1,2))
 model <- m2
 
 # Manipulate model
-#   m3_const -> ARIMA(2,1,0) include constant term
-#   m3_drift -> ARIMA(2,1,0) include drift term
-# Specify model used
-#   m1_ml -> model 1 with Maximum likelihood method
-#   m1_css -> model 1 with CSS method
+model_mean <- Arima(temp, order=c(2,1,0), include.mean = TRUE)
+model_drift <- Arima(temp, order=c(2,1,0), include.drift = TRUE)
+
+# Specify method used
+m
 
 #----------------------------------------------
 # .... Model diagnosis
