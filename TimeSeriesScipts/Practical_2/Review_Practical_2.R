@@ -7,6 +7,7 @@ library(forecast)
 # Import dataset
 data_path = "//mac/Home/Documents/_DataScienceHub/R/Datasources/Practicals_data.xls"
 dataframe = read_excel(data_path)
+View(dataframe)
 attach(dataframe)
 
 
@@ -73,9 +74,13 @@ model_mean <- Arima(temp, order=c(2,1,0), include.mean = TRUE)
 model_drift <- Arima(temp, order=c(2,1,0), include.drift = TRUE)
 
 # Specify method used
-m
+model
+Arima(temp, order=c(2,1,0), method="ML")
+Arima(temp, order=c(2,1,0), method="CSS")
 
 #----------------------------------------------
 # .... Model diagnosis
 #----------------------------------------------
-# Check the residuals if normaly distributed
+checkresiduals(model)
+
+
