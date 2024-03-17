@@ -65,12 +65,14 @@ auto.arima(Temp, stepwise = FALSE, approximation = FALSE)
 
 m3 <- Arima(Temp, order=c(2,1,0)) # suitable model
 
-m4 <- Arima(Temp, order=c(2,1,0), include.constant = TRUE) # Include contant
-# m4 <- Arima(Temp, order=c(2,1,0), include.drift = TRUE) # Include drift
+# Include contant
+m3_const <- Arima(Temp, order=c(2,1,0), include.constant = TRUE)
+# Include drift
+m3_drift <- Arima(Temp, order=c(2,1,0), include.drift = TRUE)
 
 # Specifying the method
-m5 <- Arima(Temp, order=c(1,1,0), method="ML")
-m6 <- Arima(Temp, order=c(1,1,0), method="CSS")
+m1_ml <- Arima(Temp, order=c(1,1,0), method="ML")
+m1_css <- Arima(Temp, order=c(1,1,0), method="CSS")
 
 
 #----------------------------------------------
