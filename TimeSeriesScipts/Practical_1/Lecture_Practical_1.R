@@ -41,8 +41,6 @@ adf.test(Temp_diff_1)
 pp.test(Temp_diff_1)
 kpss.test(Temp_diff_1)
 
-
-
 # ----------------------------------------------
 # .... Plot of ACF and PACF
 # ----------------------------------------------

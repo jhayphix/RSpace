@@ -1,35 +1,19 @@
-# Import modules
-library(readxl)
-library(tseries)
-library(ggplot2)
-library(forecast)
-
-# Import dataset
-data_path = "//mac/Home/Documents/_DataScienceHub/R/Datasources/Practicals_data.xls"
-dataframe = read_excel(data_path)
-attach(dataframe)
-
 #----------------------------------------------
 # .... Temperature data starting from 1960
 #----------------------------------------------
-temp <- ts(Temperature, start=c(1960, 1), frequency = 1); temp
-temp2 <- ts(Temperature, start=c(1960, 1), frequency = 12); temp2
+# Temp -> yearly data
+# Temp2 -> monthly data
 
 #----------------------------------------------
 # .... Work with temp2
 #----------------------------------------------
-plot(temp2, main="Plot of Monthly Temperature Series", ylab="Tempeature", xlab="Year", lwd=2.1, col="blue")
-
-welch(Temp2, freq=12) # no seasonality
-
+# Plot the series
 # Plot for seasonality
 # Check for seasonality
 
 #----------------------------------------------
 # .... Work with temp
 #----------------------------------------------
-plot(temp, main="Plot of Yearly Temperature Series", ylab="Tempeature", xlab="Year", lwd=2.2, col="maroon")
-
 # Check if stationary
 # Check the number of differences needed base on the test
 # Difference temp
