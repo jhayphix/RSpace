@@ -20,11 +20,11 @@ Temp = ts(Temperature, start=1960, end=2018, frequency=1)
 Temp2= ts(Temperature, start=c(1960,1), frequency=12)
 
 #----------------------------------------------
-# .... Working with Temp
+# .... Working with Temp2
 #----------------------------------------------
 autoplot(Temp2, main="Plot of Temperature two", col="maroon", lwd=2)
 
-welch(Temp2, freq=12) # not seasonality
+welch(Temp2, freq=12) # no seasonality
 
 acf(Temp2, main="Plot of Temperature two", col="brown", lwd=2)
 
